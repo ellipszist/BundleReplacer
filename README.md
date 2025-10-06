@@ -62,7 +62,7 @@ BundleReplacer.exe import -p <input_path> -r <replace_path> -o <output_path> -f 
 - `-p` or `--path=` specifies the path to the AssetBundle file.
 - `-r` or `--replace=` specifies the directory of files to replace.
 - `-o` or `--output=` specifies the output path for the replaced AssetBundle.
-- `-f` or `--filter=` specifies the types to replace, separated by `,`. If not specified, all types will be exported.
+- `-f` or `--filter=` specifies the types to replace, separated by `,`. If not specified, all types will be imported.
 
 ## License
 
