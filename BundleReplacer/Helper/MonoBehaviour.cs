@@ -44,6 +44,19 @@ internal static class MonoBehaviour
             {
                 var refFileName = asset.file.Metadata.Externals[fileID - 1].PathName;
                 refAsset = manager.LoadAssetsFileFromBundle(bundle, Path.GetFileName(refFileName));
+                if (refAsset is null)
+                {
+                    var dependencyName = Path.GetFileName(refFileName);
+                    if (dependencyName.StartsWith("CAB-"))
+                    {
+                        var dependencyPath = Path.Combine(Path.GetDirectoryName(bundle.path)!, $"{dependencyName[4..]}.bundle");
+                        if (File.Exists(dependencyPath))
+                        {
+                            var dependencyBundle = manager.LoadBundleFile(dependencyPath);
+                            refAsset = manager.LoadAssetsFileFromBundle(dependencyBundle, dependencyName);
+                        }
+                    }
+                }
             }
             try
             {
